@@ -3,42 +3,42 @@ class AdjacencyMatrix:
     # vértices.
     def __init__(self, number_of_vertices: int) -> None:
         self.number_of_vertices = number_of_vertices
-        self.grafo = [
+        self.graph = [
             [0] * self.number_of_vertices for _ in range(self.number_of_vertices)
         ]
 
     def show_graph(self):
         for i in range(self.number_of_vertices):
-            print(self.grafo[i])
+            print(self.graph[i])
 
     # Para adicionar uma aresta em um grafo de adjacência, precisamos receber como parâmetro
     # dois vértices. Dessa forma, o primeiro vértice irá acessar a linha e o segundo vértice
     # irá acessar a coluna.
     def add_edge(self, first_vertice, second_vertice):
-        self.grafo[first_vertice - 1][second_vertice - 1] += 1
+        self.graph[first_vertice - 1][second_vertice - 1] += 1
 
         # Essa segunda linha é importante, pois estamos lidando com um
         # grafo não direcionado, ou seja, se o primeiro vértice está conectado
         # ao segundo vértice. O contrário também vale, dessa forma, a segunda
         # linha garante a simetria
-        self.grafo[second_vertice - 1][first_vertice - 1] += 1
+        self.graph[second_vertice - 1][first_vertice - 1] += 1
 
     # De forma análoga à adição, acessamos os vértices como se tivéssemos adicionando, mas
     # ao invés de somar um, nós subtraímos
     def remove_edge(self, first_vertice, second_vertice):
-        self.grafo[first_vertice - 1][second_vertice - 1] -= 1
-        self.grafo[second_vertice - 1][first_vertice - 1] -= 1
+        self.graph[first_vertice - 1][second_vertice - 1] -= 1
+        self.graph[second_vertice - 1][first_vertice - 1] -= 1
 
     # Para checar se um vértice existe, basta acessarmos o vértice e checar se o valor
     # da célula é maior do que 0
     def edge_exists(self, first_vertice, second_vertice):
-        return self.grafo[first_vertice - 1][second_vertice - 1] > 0
+        return self.graph[first_vertice - 1][second_vertice - 1] > 0
 
     # Como as linhas e colunas são vértices, para obter o grau de um vértice, basta acessarmos
     # o vértice, iterar sobre a lista e checar por valores maiores do que 0
     def get_edge_degree(self, vertice):
         edge_degree = 0
-        current_vertice = self.grafo[vertice - 1]
+        current_vertice = self.graph[vertice - 1]
         for i in range(self.number_of_vertices):
             if current_vertice[i] > 0:
                 edge_degree += 1
@@ -58,7 +58,7 @@ class AdjacencyMatrix:
     # temos um loop
     def has_loop(self):
         for i in range(self.number_of_vertices):
-            if self.grafo[i][i] != 0:
+            if self.graph[i][i] != 0:
                 return True
         return False
 
@@ -68,7 +68,7 @@ class AdjacencyMatrix:
     def has_parallel_edge(self):
         for i in range(self.number_of_vertices):
             for j in range(i + 1, self.number_of_vertices):
-                if self.grafo[i][j] > 1:
+                if self.graph[i][j] > 1:
                     print(f"Achei uma aresta paralela em {i + 1} e {j + 1}")
                     return True
         return False
