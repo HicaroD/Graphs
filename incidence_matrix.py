@@ -34,7 +34,7 @@ class IncidenceMatrix:
         self.graph[first_vertice][edge_number] -= 1
         self.graph[second_vertice][edge_number] -= 1
 
-    # Para saber se existe uma ligação entre dois vértices, precisamos escolher também a aresta, 
+    # Para saber se existe uma ligação entre dois vértices, precisamos escolher também a aresta,
     # pois podemos ter qualquer aresta do grafo ligando dois vértices
     def edge_exists(
         self,
@@ -47,10 +47,43 @@ class IncidenceMatrix:
             and self.graph[second_vertice][edge_number] > 0
         )
 
+    # Esse método irá iterar verticalmente por todas arestas para saber se algumas delas
+    # liga os dois vértices em questão
+    def get_edge(
+        self,
+        first_vertice: int,
+        second_vertice: int,
+    ) -> int:
+        for edge in range(self.number_of_edges):
+            if self.edge_exists(first_vertice, second_vertice, edge):
+                return edge
+        return -1
+
+    # O grau do vértice é basicamente a quantidade de arestas que incidem sobre ele.
+    # Isso é simples de encontrar em uma matriz de incidência, pois basta iterarmos
+    # no vértice e procurar os elementos que são maiores do que 1
+    # A soma final é o grau do vértice
+    def get_vertice_degree(self, vertice) -> int:
+        degree = 0
+        for edge in range(self.number_of_edges):
+            degree += self.graph[vertice][edge]
+        return degree
+    
+    # Para saber o grau do vértice, nós somamos o grau de todos os vértices
+    def get_graph_degree(self) -> int:
+        degree = 0
+        for vertice in range(self.number_of_vertices):
+            degree += self.get_vertice_degree(vertice)
+        return degree
+
 
 def main():
     graph = IncidenceMatrix(number_of_edges=4, number_of_vertices=4)
     graph.add_edge(1, 2, 3)
+    graph.add_edge(2, 1, 1)
+    graph.add_edge(0, 1, 1)
+    print(graph.get_vertice_degree(1))
+    print(graph.get_graph_degree())
     graph.show_graph()
 
 
