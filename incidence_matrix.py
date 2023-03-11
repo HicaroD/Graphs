@@ -83,6 +83,12 @@ class IncidenceMatrix:
                     return True
         return False
 
+    def has_parallel_edges(self) -> bool:
+        pass
+
+    def is_simple(self):
+        return not (self.has_loop() or self.has_parallel_edges())
+
 
 def main():
     graph = IncidenceMatrix(number_of_edges=4, number_of_vertices=4)
@@ -92,6 +98,7 @@ def main():
     print(graph.get_vertice_degree(1))
     print(graph.get_graph_degree())
     print(graph.has_loop())
+    print(graph.is_simple())
     graph.show_graph()
 
 
