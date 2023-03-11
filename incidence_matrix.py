@@ -68,13 +68,20 @@ class IncidenceMatrix:
         for edge in range(self.number_of_edges):
             degree += self.graph[vertice][edge]
         return degree
-    
+
     # Para saber o grau do vértice, nós somamos o grau de todos os vértices
     def get_graph_degree(self) -> int:
         degree = 0
         for vertice in range(self.number_of_vertices):
             degree += self.get_vertice_degree(vertice)
         return degree
+
+    def has_loop(self) -> bool:
+        for vertice in range(self.number_of_vertices):
+            for edge in range(self.number_of_edges):
+                if self.graph[vertice][edge] > 1:
+                    return True
+        return False
 
 
 def main():
@@ -84,6 +91,7 @@ def main():
     graph.add_edge(0, 1, 1)
     print(graph.get_vertice_degree(1))
     print(graph.get_graph_degree())
+    print(graph.has_loop())
     graph.show_graph()
 
 
