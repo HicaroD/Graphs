@@ -14,16 +14,17 @@ class IncidenceMatrix:
             print(vertice, end="\n")
 
     # Para ligar um vértice a outra, precisamos escolher uma aresta para ligá-los.
-    # Após isso,
     def add_edge(
         self,
         first_vertice: int,
         second_vertice: int,
         edge_number: int,
     ) -> None:
-        self.graph[first_vertice - 1][edge_number - 1] += 1
+        self.graph[first_vertice][edge_number] += 1
         self.graph[second_vertice][edge_number] += 1
 
+    # Para remover a ligação entre dois vértices, precisamos fazer a mesma coisa da adição de arestas,
+    # mas, dessa vez nós subtraímos os valores.
     def remove_edge(
         self,
         first_vertice: int,
@@ -33,6 +34,8 @@ class IncidenceMatrix:
         self.graph[first_vertice][edge_number] -= 1
         self.graph[second_vertice][edge_number] -= 1
 
+    # Para saber se existe uma ligação entre dois vértices, precisamos escolher também a aresta, 
+    # pois podemos ter qualquer aresta do grafo ligando dois vértices
     def edge_exists(
         self,
         first_vertice: int,
