@@ -76,6 +76,8 @@ class IncidenceMatrix:
             degree += self.get_vertice_degree(vertice)
         return degree
 
+    # Um grafo tem loop quando pelo menos um vértice está ligado a si mesmo através de uma aresta
+    # Isso é também chamado de laço
     def has_loop(self) -> bool:
         for vertice in range(self.number_of_vertices):
             for edge in range(self.number_of_edges):
@@ -83,9 +85,11 @@ class IncidenceMatrix:
                     return True
         return False
 
+    # Um grafo tem aresta paralela quando ao menos duas arestas possuem o mesmo par de vértices
     def has_parallel_edges(self) -> bool:
         pass
 
+    # Um grafo é simples quando não possui loops, nem arestas paralelas
     def is_simple(self):
         return not (self.has_loop() or self.has_parallel_edges())
 
