@@ -36,13 +36,13 @@ class AdjacencyMatrix:
 
     # Como as linhas e colunas são vértices, para obter o grau de um vértice, basta acessarmos
     # o vértice, iterar sobre a lista e checar por valores maiores do que 0
-    def get_edge_degree(self, vertice):
-        edge_degree = 0
+    def get_vertice_degree(self, vertice):
+        vertice_degree = 0
         current_vertice = self.graph[vertice - 1]
         for i in range(self.number_of_vertices):
             if current_vertice[i] > 0:
-                edge_degree += 1
-        return edge_degree
+                vertice_degree += 1
+        return vertice_degree
 
     # De forma análoga a pegar o grau de um vértice, para obter o grau de um grafo, basta somar
     # o grau de todos os vértices.
@@ -50,7 +50,7 @@ class AdjacencyMatrix:
     def get_graph_degree(self):
         graph_degree = 0
         for i in range(self.number_of_vertices):
-            graph_degree += self.get_edge_degree(i)
+            graph_degree += self.get_vertice_degree(i)
         return graph_degree
 
     # Loops são arestas para um mesmo vértice. Para checar isso, precisamos analisar a diagonal principal,
@@ -87,7 +87,7 @@ def main():
     grafo.add_edge(1, 4)
     grafo.add_edge(2, 2)
     print(grafo.has_parallel_edge())
-    print(grafo.get_edge_degree(1))
+    print(grafo.get_vertice_degree(1))
     print(grafo.get_graph_degree())
     print(grafo.has_loop())
     print(grafo.is_simple())
