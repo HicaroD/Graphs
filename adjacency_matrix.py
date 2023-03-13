@@ -8,8 +8,8 @@ class AdjacencyMatrix:
         ]
 
     def show_graph(self):
-        for i in range(self.number_of_vertices):
-            print(self.graph[i])
+        for vertice in self.graph:
+            print(vertice)
 
     # Para adicionar uma aresta em um grafo de adjacência, precisamos receber como parâmetro
     # dois vértices. Dessa forma, o primeiro vértice irá acessar a linha e o segundo vértice
@@ -58,7 +58,7 @@ class AdjacencyMatrix:
     # temos um loop
     def has_loop(self):
         for i in range(self.number_of_vertices):
-            if self.graph[i][i] != 0:
+            if self.graph[i][i] > 0:
                 return True
         return False
 

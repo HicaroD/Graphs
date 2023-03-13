@@ -5,9 +5,7 @@ class IncidenceMatrix:
     def __init__(self, number_of_vertices: int, number_of_edges: int) -> None:
         self.number_of_vertices = number_of_vertices
         self.number_of_edges = number_of_edges
-        self.graph = [
-            [0 for _ in range(number_of_edges)] for _ in range(number_of_vertices)
-        ]
+        self.graph = [[0] * self.number_of_edges for _ in range(number_of_vertices)]
 
     def show_graph(self):
         for vertice in self.graph:
