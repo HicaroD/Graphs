@@ -99,9 +99,9 @@ class IncidenceMatrix:
             for previous_vertice in range(self.number_of_vertices):
                 previous_vertice_edges.append(self.graph[previous_vertice][edge])
 
-            for next_vertice in range(edge + 1, self.number_of_vertices):
+            for next_edge in range(edge + 1, self.number_of_edges):
                 next_vertice_edge = []
-                for next_edge in range(self.number_of_vertices):
+                for next_vertice in range(self.number_of_vertices):
                     next_vertice_edge.append(self.graph[next_vertice][next_edge])
                 
                 if previous_vertice_edges == next_vertice_edge:
@@ -114,8 +114,7 @@ class IncidenceMatrix:
 
 
 def main():
-    graph = IncidenceMatrix(number_of_edges=3, number_of_vertices=3)
-    graph.connect_edge(1, 0, 1)
+    graph = IncidenceMatrix(number_of_edges=3, number_of_vertices=4)
     graph.connect_edge(0, 2, 2)
     print(graph.has_parallel_edges())
     graph.connect_edge(0, 1, 0)
