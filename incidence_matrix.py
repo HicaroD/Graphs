@@ -94,17 +94,17 @@ class IncidenceMatrix:
 
     # Um grafo tem aresta paralela quando ao menos duas arestas possuem o mesmo par de vértices
     def has_parallel_edges(self) -> bool:
-        for i in range(self.number_of_edges):
-            aresta1 = []
-            for j in range(self.number_of_vertices):
-                aresta1.append(self.graph[j][i])
+        for edge in range(self.number_of_edges):
+            previous_vertice_edges = []
+            for previous_vertice in range(self.number_of_vertices):
+                previous_vertice_edges.append(self.graph[previous_vertice][edge])
 
-            for j in range(i + 1, self.number_of_vertices):
-                aresta2 = []
-                for k in range(self.number_of_vertices):
-                    aresta2.append(self.graph[k][j])
+            for next_vertice in range(edge + 1, self.number_of_vertices):
+                next_vertice_edge = []
+                for next_edge in range(self.number_of_vertices):
+                    next_vertice_edge.append(self.graph[next_vertice][next_edge])
                 
-                if aresta1 == aresta2:
+                if previous_vertice_edges == next_vertice_edge:
                     return True
         return False
 
