@@ -27,12 +27,17 @@ class AdjacencyMatrix:
     # ao invés de somar um, nós subtraímos
     def remove_edge(self, first_vertice, second_vertice):
         self.graph[first_vertice - 1][second_vertice - 1] -= 1
+
+        # Essa linha de código só é necessária caso o grafo seja não direcionado
         self.graph[second_vertice - 1][first_vertice - 1] -= 1
 
     # Para checar se um vértice existe, basta acessarmos o vértice e checar se o valor
     # da célula é maior do que 0
     def edge_exists(self, first_vertice, second_vertice):
-        return self.graph[first_vertice - 1][second_vertice - 1] > 0
+        return (
+            self.graph[first_vertice - 1][second_vertice - 1] > 0
+            and self.graph[second_vertice - 1][first_vertice - 1] > 0
+        )
 
     # Como as linhas e colunas são vértices, para obter o grau de um vértice, basta acessarmos
     # o vértice, iterar sobre a lista e checar por valores maiores do que 0
