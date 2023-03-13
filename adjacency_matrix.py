@@ -51,7 +51,7 @@ class AdjacencyMatrix:
 
     # De forma análoga a pegar o grau de um vértice, para obter o grau de um grafo, basta somar
     # o grau de todos os vértices.
-    # Dessa maneira, precisamos passar por todos os elementos do grafo e somar o grau de cada um
+    # Dessa maneira, precisamos passar por todos os vértices do grafo e somar o grau de cada um
     def get_graph_degree(self):
         graph_degree = 0
         for i in range(self.number_of_vertices):
