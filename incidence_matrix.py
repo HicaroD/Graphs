@@ -1,3 +1,11 @@
+"""
+    e1 e2 e3 e4
+v1 [0, 0, 0, 0]
+v2 [0, 0, 0, 0]
+v3 [0, 0, 0, 0]
+v4 [0, 0, 0, 0]
+"""
+
 class IncidenceMatrix:
     # Matriz de incidêNcia é outra forma de representar um grafo,
     # As linhas são vértices e colunas são arestas.
@@ -12,7 +20,7 @@ class IncidenceMatrix:
             print(vertice, end="\n")
 
     # Para ligar um vértice a outra, precisamos escolher uma aresta para ligá-los.
-    def add_edge(
+    def connect_edge(
         self,
         first_vertice: int,
         second_vertice: int,
@@ -23,7 +31,7 @@ class IncidenceMatrix:
 
     # Para remover a ligação entre dois vértices, precisamos fazer a mesma coisa da adição de arestas,
     # mas, dessa vez nós subtraímos os valores.
-    def remove_edge(
+    def disconnect_edge(
         self,
         first_vertice: int,
         second_vertice: int,
@@ -86,7 +94,19 @@ class IncidenceMatrix:
 
     # Um grafo tem aresta paralela quando ao menos duas arestas possuem o mesmo par de vértices
     def has_parallel_edges(self) -> bool:
-        pass
+        for i in range(self.number_of_edges):
+            aresta1 = []
+            for j in range(self.number_of_vertices):
+                aresta1.append(self.graph[j][i])
+
+            for j in range(i + 1, self.number_of_vertices):
+                aresta2 = []
+                for k in range(self.number_of_vertices):
+                    aresta2.append(self.graph[k][j])
+                
+                if aresta1 == aresta2:
+                    return True
+        return False
 
     # Um grafo é simples quando não possui loops, nem arestas paralelas
     def is_simple(self):
@@ -94,14 +114,12 @@ class IncidenceMatrix:
 
 
 def main():
-    graph = IncidenceMatrix(number_of_edges=4, number_of_vertices=4)
-    graph.add_edge(1, 2, 3)
-    graph.add_edge(2, 1, 1)
-    graph.add_edge(0, 1, 1)
-    print(graph.get_vertice_degree(1))
-    print(graph.get_graph_degree())
-    print(graph.has_loop())
-    print(graph.is_simple())
+    graph = IncidenceMatrix(number_of_edges=3, number_of_vertices=3)
+    graph.connect_edge(1, 0, 1)
+    graph.connect_edge(0, 2, 2)
+    print(graph.has_parallel_edges())
+    graph.connect_edge(0, 1, 0)
+    print(graph.has_parallel_edges())
     graph.show_graph()
 
 

@@ -1,3 +1,13 @@
+"""
+    v1 v2 v3 v4
+v1 [0, 1, 0, 0]
+v2 [0, 0, 0, 0]
+v3 [0, 0, 0, 0]
+v4 [0, 0, 0, 0]
+
+"""
+
+
 class AdjacencyMatrix:
     # Em um grafo representado por uma matriz de adjacência, colunas e linhas são
     # vértices.
