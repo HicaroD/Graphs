@@ -76,7 +76,7 @@ class IncidenceMatrix:
 
     # Um grafo tem loop quando pelo menos um vértice está ligado a si mesmo através de uma aresta
     # Isso é também chamado de laço
-    # Mesmo algoritmo de checar se existe arestas paralelas em uma matriz de adjacência
+    # Um pouco parecido com o algoritmo de checar se existe arestas paralelas em uma matriz de adjacência
     def has_loop(self) -> bool:
         for vertice in range(self.number_of_vertices):
             for edge in range(self.number_of_edges):

@@ -70,7 +70,7 @@ class AdjacencyMatrix:
     # Arestas paralelas são aquelas que possuem o mesmo par de vértices.
     # Dessa forma, se tivermos um vertice 1 conectado a 2, e um vértice 2 conectado a 1, nós temos uma aresta
     # paralela.
-    # Mesmo algoritmo de checar se existe loop em uma matriz de incidência
+    # Um pouco parecido com o algoritmo de checar se existe loop em uma matriz de incidência
     def has_parallel_edge(self):
         for i in range(self.number_of_vertices):
             for j in range(i + 1, self.number_of_vertices):
