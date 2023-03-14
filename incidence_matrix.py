@@ -63,8 +63,8 @@ class IncidenceMatrix:
     # A soma final é o grau do vértice
     def get_vertice_degree(self, vertice) -> int:
         degree = 0
-        for edge in range(self.number_of_edges):
-            degree += self.graph[vertice][edge]
+        for current_edge in self.graph[vertice]:
+            degree += current_edge
         return degree
 
     # Para saber o grau do vértice, nós somamos o grau de todos os vértices
@@ -111,6 +111,7 @@ def main():
     print(graph.has_parallel_edges())
     graph.connect_edge(0, 1, 0)
     print(graph.has_parallel_edges())
+    print(graph.get_vertice_degree(1))
     graph.show_graph()
 
 
