@@ -92,11 +92,11 @@ class IncidenceMatrix:
                 previous_vertice_edges.append(self.graph[previous_vertice][edge])
 
             for next_edge in range(edge + 1, self.number_of_edges):
-                next_vertice_edge = []
+                next_vertice_edges = []
                 for next_vertice in range(self.number_of_vertices):
-                    next_vertice_edge.append(self.graph[next_vertice][next_edge])
+                    next_vertice_edges.append(self.graph[next_vertice][next_edge])
                 
-                if previous_vertice_edges == next_vertice_edge:
+                if previous_vertice_edges == next_vertice_edges:
                     return True
         return False
 
