@@ -45,8 +45,7 @@ class AdjacencyMatrix:
         vertice_degree = 0
         current_vertice = self.graph[vertice - 1]
         for i in range(self.number_of_vertices):
-            if current_vertice[i] > 0:
-                vertice_degree += 1
+            vertice_degree += current_vertice[i]
         return vertice_degree
 
     # De forma análoga a pegar o grau de um vértice, para obter o grau de um grafo, basta somar
