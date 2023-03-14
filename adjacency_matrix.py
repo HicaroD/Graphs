@@ -14,7 +14,7 @@ class AdjacencyMatrix:
     # Para adicionar uma aresta em um grafo de adjacência, precisamos receber como parâmetro
     # dois vértices. Dessa forma, o primeiro vértice irá acessar a linha e o segundo vértice
     # irá acessar a coluna.
-    def add_edge(self, first_vertice, second_vertice):
+    def connect_edge(self, first_vertice, second_vertice):
         self.graph[first_vertice - 1][second_vertice - 1] += 1
 
         # Essa segunda linha é importante, pois estamos lidando com um
@@ -25,7 +25,7 @@ class AdjacencyMatrix:
 
     # De forma análoga à adição, acessamos os vértices como se tivéssemos adicionando, mas
     # ao invés de somar um, nós subtraímos
-    def remove_edge(self, first_vertice, second_vertice):
+    def disconnect_edge(self, first_vertice, second_vertice):
         self.graph[first_vertice - 1][second_vertice - 1] -= 1
 
         # Essa linha de código só é necessária caso o grafo seja não direcionado
@@ -33,7 +33,7 @@ class AdjacencyMatrix:
 
     # Para checar se um vértice existe, basta acessarmos o vértice e checar se o valor
     # da célula é maior do que 0
-    def edge_exists(self, first_vertice, second_vertice):
+    def exists_edge(self, first_vertice, second_vertice):
         return (
             self.graph[first_vertice - 1][second_vertice - 1] > 0
             and self.graph[second_vertice - 1][first_vertice - 1] > 0
@@ -85,12 +85,12 @@ class AdjacencyMatrix:
 
 def main():
     grafo = AdjacencyMatrix(4)
-    grafo.add_edge(1, 2)
-    grafo.add_edge(2, 1)
-    grafo.add_edge(1, 3)
-    grafo.add_edge(3, 1)
-    grafo.add_edge(1, 4)
-    grafo.add_edge(2, 2)
+    grafo.connect_edge(1, 2)
+    grafo.connect_edge(2, 1)
+    grafo.connect_edge(1, 3)
+    grafo.connect_edge(3, 1)
+    grafo.connect_edge(1, 4)
+    grafo.connect_edge(2, 2)
     print(grafo.has_parallel_edge())
     print(grafo.get_vertice_degree(1))
     print(grafo.get_graph_degree())
