@@ -1,5 +1,5 @@
 class IncidenceMatrix:
-    # Matriz de incidêNcia é outra forma de representar um grafo,
+    # Matriz de incidência é outra forma de representar um grafo,
     # As linhas são vértices e colunas são arestas.
 
     def __init__(self, number_of_vertices: int, number_of_edges: int) -> None:
