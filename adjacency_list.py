@@ -33,6 +33,13 @@ class AdjacencyList:
         #     total_degree += len(vertice)
         # return total_degree
 
+    def is_eulerian_graph(self):
+        for vertice_index in range(self.graph):
+            vertice_degree = self.get_vertice_degree(vertice_index)
+            if vertice_degree % 2 != 0:
+                return False
+        return True
+
 
 def main():
     graph = AdjacencyList(10)
