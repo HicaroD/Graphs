@@ -18,7 +18,7 @@ class DjikstraAlgorithm:
         priorityQueue = [(0, startingNode)]
 
         while priorityQueue:
-            # Get the unvisited node with the smallest distance from the start
+            # Pegue uma node não visitada com a menor distância em relação ao início
             current_distance, current_node = heapq.heappop(priorityQueue)
 
             # Se a node já tiver sido visitada, volte para o início do loop
