@@ -22,10 +22,13 @@ class Kruskal:
         for u, v, weight in sorted_edges:
             parent_u = self.find_parent(parent, int(u) - 1)
             parent_v = self.find_parent(parent, int(v) - 1)
-            if parent_u != parent_v:
+            if self.does_not_form_a_loop(parent_u, parent_v):
                 minimum_spanning_tree.append((u, v, weight))
                 parent[parent_u] = parent_v
         return minimum_spanning_tree
+
+    def does_not_form_a_loop(self, first_parent: int, second_parent) -> bool:
+        return first_parent != second_parent
 
     def find_parent(self, parent: List[int], node: int) -> int:
         if parent[node] == node:
