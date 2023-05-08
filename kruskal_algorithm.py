@@ -16,15 +16,16 @@ class Kruskal:
         self,
     ) -> List[Tuple[int, int, int]]:
         sorted_edges = self.get_sorted_edges()
-        parent = [i for i in range(len(self.graph))]
+        parents = [i for i in range(len(self.graph))]
         minimum_spanning_tree = []
 
-        for u, v, weight in sorted_edges:
-            parent_u = self.find_parent(parent, int(u) - 1)
-            parent_v = self.find_parent(parent, int(v) - 1)
-            if self.does_not_form_a_loop(parent_u, parent_v):
-                minimum_spanning_tree.append((u, v, weight))
-                parent[parent_u] = parent_v
+        for start_vertex, end_vertex, weight in sorted_edges:
+            start_vertex_parent = self.find_parent(parents, int(start_vertex) - 1)
+            end_vertex_parent = self.find_parent(parents, int(end_vertex) - 1)
+
+            if self.does_not_form_a_loop(start_vertex_parent, end_vertex_parent):
+                minimum_spanning_tree.append((start_vertex, end_vertex, weight))
+                parents[start_vertex_parent] = end_vertex_parent
         return minimum_spanning_tree
 
     def does_not_form_a_loop(self, first_parent: int, second_parent) -> bool:
