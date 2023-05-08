@@ -28,7 +28,7 @@ class Kruskal:
                 parents[start_vertex_parent] = end_vertex_parent
         return minimum_spanning_tree
 
-    def does_not_form_a_loop(self, first_parent: int, second_parent) -> bool:
+    def does_not_form_a_loop(self, first_parent: int, second_parent: int) -> bool:
         return first_parent != second_parent
 
     def find_parent(self, parent: List[int], node: int) -> int:
