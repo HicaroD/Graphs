@@ -4,6 +4,7 @@ from typing import List, Tuple
 class Kruskal:
     def __init__(self, graph: dict) -> None:
         self.graph = graph
+        self.parents = [i for i in range(len(self.graph))]
 
     def get_sorted_edges(self) -> List[Tuple[str, str, int]]:
         edges = []
@@ -16,25 +17,24 @@ class Kruskal:
         self,
     ) -> List[Tuple[int, int, int]]:
         sorted_edges = self.get_sorted_edges()
-        parents = [i for i in range(len(self.graph))]
         minimum_spanning_tree = []
 
         for start_vertex, end_vertex, weight in sorted_edges:
-            start_vertex_parent = self.find_parent(parents, int(start_vertex) - 1)
-            end_vertex_parent = self.find_parent(parents, int(end_vertex) - 1)
+            start_vertex_parent = self.find_parent(int(start_vertex) - 1)
+            end_vertex_parent = self.find_parent(int(end_vertex) - 1)
 
             if self.does_not_form_a_loop(start_vertex_parent, end_vertex_parent):
                 minimum_spanning_tree.append((start_vertex, end_vertex, weight))
-                parents[start_vertex_parent] = end_vertex_parent
+                self.parents[start_vertex_parent] = end_vertex_parent
         return minimum_spanning_tree
 
     def does_not_form_a_loop(self, first_parent: int, second_parent: int) -> bool:
         return first_parent != second_parent
 
-    def find_parent(self, parent: List[int], node: int) -> int:
-        if parent[node] == node:
+    def find_parent(self, node: int) -> int:
+        if self.parents[node] == node:
             return node
-        return self.find_parent(parent, parent[node])
+        return self.find_parent(self.parents[node])
 
 
 def main():
