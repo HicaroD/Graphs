@@ -10,6 +10,8 @@ class GraphSearch:
     # Escolhemos um vértice como inicial (qualquer um do grafo), visitamos todos os
     # vértices adjacentes (vizinhos) desse vértice.
     # Depois eu vou visitar o vizinho dos vizinhos, e assim por diante.
+    # A estrutura de dados principal usada em BFS é a Queue. Nós adicionamos a node
+    # inicial na Queue e depois os vizinhos dessa node inicial e assim por diante.
     def breadth_first_search(self, initial_node: str) -> list[str]:
         traversion_result = []
         visited = set()

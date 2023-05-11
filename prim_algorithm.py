@@ -18,7 +18,7 @@ class Prim:
         # Sete esse vértice como visitado
         visited.add(starting_vertex)
 
-        # Crie uma priority queue com todos os vértices que estão conectados com o vértice inicial
+        # Crie uma priority queue com todos os vizinhos do vértice inicial
         edges = [
             (starting_vertex, neighbor, weight)
             for neighbor, weight in self.graph[starting_vertex].items()
