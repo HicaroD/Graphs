@@ -12,21 +12,21 @@ class DjikstraAlgorithm:
         # Zero porque estou começando a partir daqui, logo distância para node inicial igual a zero
         distances[startingNode] = 0
         # Conjunto para guardar as nodes visitadas
-        visited = set()
+        visited_nodes = set()
 
         # Priority queue que servirá para guardar as distâncias mais curtas
-        priorityQueue = [(0, startingNode)]
+        priority_queue = [(0, startingNode)]
 
-        while priorityQueue:
+        while priority_queue:
             # Pegue uma node não visitada com a menor distância em relação ao início
-            current_distance, current_node = heapq.heappop(priorityQueue)
+            current_distance, current_node = heapq.heappop(priority_queue)
 
             # Se a node já tiver sido visitada, volte para o início do loop
-            if current_node in visited:
+            if current_node in visited_nodes:
                 continue
 
             # Caso não esteja visitado, então sete como visitado
-            visited.add(current_node)
+            visited_nodes.add(current_node)
 
             # Atualize as distância de todos os nós vizinhos ao current_node não visitados
             for neighbor, weight in self.graph[current_node].items():
@@ -37,7 +37,7 @@ class DjikstraAlgorithm:
                 current_neighbor_distance = distances[neighbor]
                 if new_neighbor_distance < current_neighbor_distance:
                     distances[neighbor] = new_neighbor_distance
-                    heapq.heappush(priorityQueue, (new_neighbor_distance, neighbor))
+                    heapq.heappush(priority_queue, (new_neighbor_distance, neighbor))
 
         return distances
 
