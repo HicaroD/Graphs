@@ -30,13 +30,14 @@ class DjikstraAlgorithm:
 
             # Atualize as distância de todos os nós vizinhos ao current_node não visitados
             for neighbor, weight in self.graph[current_node].items():
-                new_distance = current_distance + weight
+                new_neighbor_distance = current_distance + weight
                 # Se a distância é menor do que aquela distância atual, então
                 # atualize a distância e adicione na priority queue a nova distância
                 # Só assim poderemos acessar a menor distância depois
-                if new_distance < distances[neighbor]:
-                    distances[neighbor] = new_distance
-                    heapq.heappush(priorityQueue, (new_distance, neighbor))
+                current_neighbor_distance = distances[neighbor]
+                if new_neighbor_distance < current_neighbor_distance:
+                    distances[neighbor] = new_neighbor_distance
+                    heapq.heappush(priorityQueue, (new_neighbor_distance, neighbor))
 
         return distances
 
