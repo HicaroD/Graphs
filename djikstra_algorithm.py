@@ -6,7 +6,7 @@ class DjikstraAlgorithm:
     def __init__(self, graph: Dict) -> None:
         self.graph = graph
 
-    def find_shortest_path(self, startingNode: str):
+    def find_shortest_path(self, startingNode: str) -> Dict:
         # Todas as distâncias para infinito porque não sei quais as distâncias ainda
         distances = {node: float("inf") for node in self.graph}
         # Zero porque estou começando a partir daqui, logo distância para node inicial igual a zero
@@ -31,10 +31,10 @@ class DjikstraAlgorithm:
             # Atualize as distância de todos os nós vizinhos ao current_node não visitados
             for neighbor, weight in self.graph[current_node].items():
                 new_neighbor_distance = current_distance + weight
-                # Se a distância é menor do que aquela distância atual, então
+                current_neighbor_distance = distances[neighbor]
+                # Se a nova distância é menor do que aquela distância atual, então
                 # atualize a distância e adicione na priority queue a nova distância
                 # Só assim poderemos acessar a menor distância depois
-                current_neighbor_distance = distances[neighbor]
                 if new_neighbor_distance < current_neighbor_distance:
                     distances[neighbor] = new_neighbor_distance
                     heapq.heappush(priority_queue, (new_neighbor_distance, neighbor))
