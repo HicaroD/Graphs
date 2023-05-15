@@ -30,15 +30,17 @@ class Prim:
         while edges:
             # Obtenha a aresta com custo mínimo (graças a priority queue, isso é possível)
             source, target, weight = heapq.heappop(edges)
+            if target in visited:
+                continue
 
-            if target not in visited:
-                visited.add(target)
-                minimum_spanning_tree.append((source, target, weight))
+            visited.add(target)
+            minimum_spanning_tree.append((source, target, weight))
 
-                # Adicione todas as conexões vizinhas do vértice na priority queue
-                for neighbor, weight in self.graph[target].items():
-                    if neighbor not in visited:
-                        heapq.heappush(edges, (target, neighbor, weight))
+            # Adicione todas as conexões vizinhas do vértice na priority queue
+            for neighbor, weight in self.graph[target].items():
+                if neighbor in visited:
+                    continue
+                heapq.heappush(edges, (target, neighbor, weight))
 
         return minimum_spanning_tree
 
