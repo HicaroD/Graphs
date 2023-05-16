@@ -6,9 +6,7 @@ class Kruskal:
         self.graph = graph
         self.parents = [i for i in range(len(self.graph))]
 
-    def find_minimum_spanning_tree(
-        self,
-    ) -> List[Tuple[int, int, int]]:
+    def find_minimum_spanning_tree(self) -> List[Tuple[int, int, int]]:
         minimum_spanning_tree = []
         sorted_edges = self._get_sorted_edges()
 
@@ -28,13 +26,13 @@ class Kruskal:
                 edges.append((start_vertex, end_vertex, weight))
         return sorted(edges, key=lambda edge: edge[2])
 
-    def _does_not_form_a_loop(self, first_parent: int, second_parent: int) -> bool:
-        return first_parent != second_parent
-
     def _find_parent(self, node: int) -> int:
         if self.parents[node] == node:
             return node
         return self._find_parent(self.parents[node])
+
+    def _does_not_form_a_loop(self, first_parent: int, second_parent: int) -> bool:
+        return first_parent != second_parent
 
 
 def main():

@@ -25,6 +25,7 @@ class GraphSearch:
             traversion_result.append(current_node)
 
             for neighbor in self.graph[current_node]:
+                print(neighbor)
                 if neighbor not in visited:
                     nodes.put(neighbor)
                     visited.add(neighbor)
@@ -60,7 +61,7 @@ def main() -> None:
     }
     graph_search = GraphSearch(graph)
     print(graph_search.breadth_first_search("A"))
-    graph_search.recursive_depth_first_search()
+    # graph_search.recursive_depth_first_search()
 
 
 if __name__ == "__main__":

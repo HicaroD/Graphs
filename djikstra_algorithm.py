@@ -44,11 +44,11 @@ class DjikstraAlgorithm:
 
 def main():
     graph = {
-        "A": {"B": 1, "C": 3},
-        "B": {"C": 2, "D": 10, "E": 7},
-        "C": {"E": 4},
-        "D": {"E": 2},
-        "E": {},
+        "A": {"B": 5, "C": 10},
+        "B": {"C": 3, "D": 2, "E": 9},
+        "C": {"B": 2, "E": 1},
+        "D": {"A": 7, "E": 6},
+        "E": {"D": 4},
     }
     djikstra = DjikstraAlgorithm(graph)
     shortestPath = djikstra.find_shortest_path("A")
